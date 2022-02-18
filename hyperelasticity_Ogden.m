@@ -147,9 +147,9 @@ set(gca,'FontSize',15);
 %Compute Jacobian given boundary conditions S1=S2=0
 J=zeros(size(lambda_3)); %Initialize an arry of J values which are all zeros
 for q=1:1:nDataPoints %Loop over all data points
-    %Create stress function with current lambda
-    S1_fun=@(J) k*(log(J)/J)+(1/J)*(c1/m1)*(sqrt(J/lambda_3(q))^m1...
-    -((1/3)*(2*(J/lambda_3(q))^(m1/2)+lambda_3(q)^m1)));    
+    %Create stress function with current lambda    
+    S1_fun=@(J) k*(log(J)/J) +(1./J)*(c1/m1)*( (J^(-1/3)*lambda_3(q))^(-m1/2)-...
+    (1/3)*(2*(J^(-1/3)*lambda_3(q))^(-m1/2)+(J^(-1/3)*lambda_3(q))^m1) );    
     
     %Find Jacobian for zero stress, use J=1 as initial
     J(q)=fzero(S1_fun,1); %Find root of nonlinear function   
@@ -160,9 +160,11 @@ lambda_1=sqrt(J./lambda_3);
 lambda_2=lambda_1; %Due to uniaxial loading
 
 %Compute principal stresses (note, these are not ordered)
-S1=k*(log(J)./J)+(1./J).*(c1/m1).*(lambda_1.^m1-((1/3)*(lambda_1.^m1+lambda_2.^m1+lambda_3.^m1)));
-S2=k*(log(J)./J)+(1./J).*(c1/m1).*(lambda_2.^m1-((1/3)*(lambda_1.^m1+lambda_2.^m1+lambda_3.^m1)));
-S3=k*(log(J)./J)+(1./J).*(c1/m1).*(lambda_3.^m1-((1/3)*(lambda_1.^m1+lambda_2.^m1+lambda_3.^m1)));
+part2=(1/3)*((J.^(-1/3).*lambda_1).^m1+(J.^(-1/3).*lambda_2).^m1+(J.^(-1/3).*lambda_3).^m1);
+
+S1=k*(log(J)./J)+(1./J).*((c1/m1).*((J.^(-1/3).*lambda_1).^m1-part2));
+S2=k*(log(J)./J)+(1./J).*((c1/m1).*((J.^(-1/3).*lambda_2).^m1-part2)); 
+S3=k*(log(J)./J)+(1./J).*((c1/m1).*((J.^(-1/3).*lambda_3).^m1-part2)); 
 
 %Visualize stress graphs
 figure; hold on; 
