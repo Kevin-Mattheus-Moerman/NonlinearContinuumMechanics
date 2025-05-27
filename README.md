@@ -14,7 +14,7 @@ In addition to the theoretical developments, numerical implementations are prese
 ## Companion presentation 
 In addition to the above resources, this project features an informal companion presentation on the anatomy of the Ogden formulation. The presentation is available here in various formats (`.odp`, `ppt`, `.pdf`, and `.mp4`) in the [`assets/presentation`](https://github.com/Kevin-Mattheus-Moerman/NonlinearContinuumMechanics/blob/main/assets/presentation/) folder:
 
-![Ogden_anatomy_clean.mp4](https://github.com/Kevin-Mattheus-Moerman/NonlinearContinuumMechanics/blob/main/assets/presentation/Ogden_anatomy_clean.mp4)
+![Anatomy of the Ogden formulation presentation](https://github.com/Kevin-Mattheus-Moerman/NonlinearContinuumMechanics/blob/main/assets/presentation/Ogden_anatomy_with_gifs_smol.gif)
  
 ## Citing this education project
 Please cite this work using the following DOI:   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4696409.svg)](https://doi.org/10.5281/zenodo.4696409)
